@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+#
+# This script will expand the current word into: [word][/word]
+#
+# With no current word, it will insert: [java][/java] and allows you
+# to overwrite the tag name and add potential arguments.
+#
+# The result is inserted as a snippet, so it's
+# possible to tab through the place holders.
+
+# handle the case where caret is in the middle of a word, assume only the left part is the tag
+index = ENV['TM_LINE_INDEX'].to_i - ENV['TM_INPUT_START_LINE_INDEX'].to_i
+tag, suffix = STDIN.read, ''
+if index &lt; tag.length &amp;&amp; !ENV['TM_SELECTED_TEXT']
+  tag, suffix = tag[0...index], tag[index..-1]
+end
+
+print case tag
+  when '' then            "[${1:#{ENV['TM_DEFAULT_TAG'] || 'java'}}${2: attribute}]$3[/${1/\\s.*//}]"
+  else                    "[#{tag}${1: attribute}]$2[/#{tag.strip[/^\S+/]}]"
+end
+
+print suffix
+</string>
+	<key>fallbackInput</key>
+	<string>word</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>^&lt;</string>
+	<key>name</key>
+	<string>Insert Open/Close Tag (With Current Word)</string>
+	<key>output</key>
+	<string>insertAsSnippet</string>
+	<key>scope</key>
+	<string>text.afc</string>
+	<key>uuid</key>
+	<string>4B74116D-1099-4683-90F7-969AC75B8CA5</string>
+</dict>
+</plist>

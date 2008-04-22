@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+
+doc        = STDIN.read
+line       = ENV['TM_LINE_NUMBER'].to_i
+line_index = ENV['TM_LINE_INDEX'].to_i
+
+if ENV.has_key? 'TM_INPUT_START_LINE' then
+  line       = ENV['TM_INPUT_START_LINE'].to_i
+  line_index = ENV['TM_INPUT_START_LINE_INDEX'].to_i
+end
+
+before = /(.*\n){#{line-1}}.{#{line_index}}/.match(doc)[0]
+
+before.gsub!(/\[[^\]]+\/\s*\]/i, '')
+
+stack = [ ]
+before.scan(/\[\s*(\/)?\s*(\w[\w:-]*)[^\]]*\]/) do |m|
+  if m[0].nil? then
+    stack &lt;&lt; m[1]
+  else
+    until stack.empty? do
+      close_tag = stack.pop
+      break if close_tag == m[1]
+    end
+  end
+end
+
+if stack.empty? then
+  %x{ osascript -e beep &amp;&gt;/dev/null &amp; }
+else
+  print "[/#{stack.pop}]"
+end</string>
+	<key>input</key>
+	<string>document</string>
+	<key>keyEquivalent</key>
+	<string>~@.</string>
+	<key>name</key>
+	<string>Insert Close Tag</string>
+	<key>output</key>
+	<string>afterSelectedText</string>
+	<key>scope</key>
+	<string>text.afc</string>
+	<key>uuid</key>
+	<string>7CAC7EF5-D1B5-4D4A-A2CF-70C21203F02E</string>
+</dict>
+</plist>

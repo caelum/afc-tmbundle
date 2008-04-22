@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+$: &lt;&lt; ENV['TM_SUPPORT_PATH'] + '/lib'
+require 'escape'
+def esc(str)
+  e_sn(str).gsub(/\}/, '\\}') # escaping inside a placeholder
+end
+
+ENV['TM_SELECTED_TEXT'].to_s.each_line() { |line|
+	if(line =~ /^\*\s(.*)/)
+		print("#{esc $1}\n")
+	else
+		print("* #{line}")
+	end
+}
+</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>^*</string>
+	<key>name</key>
+	<string>Bullet List</string>
+	<key>output</key>
+	<string>replaceSelectedText</string>
+	<key>scope</key>
+	<string>text.afc</string>
+	<key>uuid</key>
+	<string>C5AAEFE8-979A-48EB-8753-E500DEC3B83B</string>
+</dict>
+</plist>

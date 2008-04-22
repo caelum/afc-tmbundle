@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>[section Exercícios${1: - Título}]
+[exercise]
+	[question]
+	$0
+	[/question]
+[/exercise]
+</string>
+	<key>name</key>
+	<string>Exercise</string>
+	<key>scope</key>
+	<string>text.afc</string>
+	<key>tabTrigger</key>
+	<string>ex</string>
+	<key>uuid</key>
+	<string>F913AB5F-9A46-4AC7-B90D-556465EC6CFB</string>
+</dict>
+</plist>
