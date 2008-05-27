@@ -49,6 +49,37 @@
 		</dict>
 		<dict>
 			<key>begin</key>
+			<string>\[(?i:ruby)\]</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.tag.afc.ruby</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\[/(?i:ruby)\]</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.tag.afc.ruby</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>source.ruby.embedded.afc</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.ruby</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
 			<string>\[xml\]</string>
 			<key>beginCaptures</key>
 			<dict>
