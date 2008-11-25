@@ -214,7 +214,7 @@
 					<key>begin</key>
 					<string>\B(\*\*)</string>
 					<key>end</key>
-					<string>(\*\*)\B</string>
+					<string>(\*\*)</string>
 					<key>name</key>
 					<string>markup.bold.afc</string>
 				</dict>
@@ -222,7 +222,7 @@
 					<key>begin</key>
 					<string>\B(::)</string>
 					<key>end</key>
-					<string>(::)\B</string>
+					<string>(::)</string>
 					<key>name</key>
 					<string>markup.italic.afc</string>
 				</dict>
