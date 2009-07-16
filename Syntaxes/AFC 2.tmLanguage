@@ -230,7 +230,7 @@
 					<key>begin</key>
 					<string>\B(%%)</string>
 					<key>end</key>
-					<string>(%%)\B</string>
+					<string>(%%)</string>
 					<key>name</key>
 					<string>markup.raw.afc</string>
 				</dict>
